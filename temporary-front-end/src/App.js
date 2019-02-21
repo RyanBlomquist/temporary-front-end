@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
-import ViewSummary from "./components/view-summary.component.js";
+import ViewSummary from "./components/view-summary/view-summary.component.js";
+import EditSummary from "./components/edit-summary/edit-summary.component.js";
 
 class App extends Component {
 
@@ -10,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <Link to="/" className="navbar-brand">Department Evaluation</Link>
             <div className="collpase nav-collapse">
               <ul className="navbar-nav mr-auto">
@@ -33,6 +34,7 @@ class App extends Component {
             </div>
           </nav>
           <Route path="/" exact component={ViewSummary} />
+          <Route path="/editSummary" exact component={EditSummary} />
         </div>
       </Router>
     );
