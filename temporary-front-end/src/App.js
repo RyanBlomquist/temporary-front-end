@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 import ViewSummary from "./components/view-summary/view-summary.component.js";
-import EditSummary from "./components/edit-summary/edit-summary.component.js";
+import RubricList from "./components/rubric-list/rubric-list.component.js";
 
 class App extends Component {
 
@@ -22,7 +22,7 @@ class App extends Component {
                   <Link to="/" className="nav-link">Evaluations</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">Rubrics</Link>
+                  <Link to="/rubricList" className="nav-link">Rubrics</Link>
                 </li>
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">Report</Link>
@@ -34,7 +34,7 @@ class App extends Component {
             </div>
           </nav>
           <Route path="/" exact component={ViewSummary} />
-          <Route path="/editSummary" exact component={EditSummary} />
+          <Route path="/rubricList" exact component={RubricList} />
         </div>
       </Router>
     );

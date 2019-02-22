@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './view-summary.css';
-import { Link} from "react-router-dom";
 //import axios from 'axios';
 
 //Dummy data
@@ -73,9 +72,8 @@ export default class ViewSummary extends Component
             addOutcomeButton = <div><button type="button" className="btn btn-primary">Add Outcome</button></div>
         }
 
-
         return (
-            <div>
+            <div className="container">
                 <h1>{programSummary.title}</h1>
             
                 <table className="table table-bordered">
