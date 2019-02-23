@@ -22,9 +22,9 @@ module.exports.authenticate=function(req,res){
         if(results.length >0){
   decryptedString = cryptr.decrypt(results[0].password);
             if(password==decryptedString){
-                res.send("WELCOME TO EVALUATION APP");
+                res.status(200).send(true);
             }else{
-                res.send("Email and password does not match");
+                res.status(200).send("Email and password does not match");
                  
             }
           

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ProgramAdministratorApp from './ProgramAdministratorApp';
-import LoginPageApp from './LoginPageApp';
+import LoginPageApp from './components/login-page/login-page';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<LoginPageApp />, document.getElementById('root'));
