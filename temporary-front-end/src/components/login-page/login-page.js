@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./login-page.css";
-import ProgramAdministratorApp from "../../ProgramAdministratorApp";
+import "./login-page.css";   
+//import ProgramAdministratorApp from "../../ProgramAdministratorApp";
 
 class LoginPage extends Component 
 {
@@ -43,9 +42,18 @@ class LoginPage extends Component
 
         Axios.post('http://localhost:8000/controllers/authenticate-controller', authentication)
             .then(res => {
-                if (res.data)
+                console.log(res.data);
+                if (res.data === true)
                 {
-                    ReactDOM.render(<ProgramAdministratorApp />, document.getElementById('root'));
+                    console.log("inside if statement")
+                    let path = '../../ProgramAdministratorApp';
+                    this.props.router.push(path);
+                    //ReactDOM.render(<ProgramAdministratorApp />, document.getElementById('root'));
+                }
+                else
+                {
+                    console.log("inside else statement");
+
                 }
             });
     }

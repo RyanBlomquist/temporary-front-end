@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
+import LoginPage from "./components/login-page/login-page";
 import ViewSummary from "./components/view-summary/view-summary.component.js";
 import RubricList from "./components/rubric-list/rubric-list.component.js";
+
 
 class ProgramAdministratorApp extends Component {
 
@@ -33,6 +35,7 @@ class ProgramAdministratorApp extends Component {
               </ul>
             </div>
           </nav>
+          <Route path="/" exact component={LoginPage} />
           <Route path="/viewSummary" exact component={ViewSummary} />
           <Route path="/rubricList" exact component={RubricList} />
         </div>
