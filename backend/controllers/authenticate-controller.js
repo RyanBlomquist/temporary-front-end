@@ -22,7 +22,7 @@ module.exports.authenticate=function(req,res){
         if(results.length >0){
   decryptedString = cryptr.decrypt(results[0].password);
             if(password==decryptedString){
-                res.status(200).send(true);
+                res.status(200).json({isUser: true});
             }else{
                 res.status(200).send("Email and password does not match");
                  

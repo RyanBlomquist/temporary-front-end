@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./login-page.css";   
+import "./login-page.css";
 //import ProgramAdministratorApp from "../../ProgramAdministratorApp";
 
 class LoginPage extends Component 
@@ -43,17 +43,13 @@ class LoginPage extends Component
         Axios.post('http://localhost:8000/controllers/authenticate-controller', authentication)
             .then(res => {
                 console.log(res.data);
-                if (res.data === true)
+                if (res.data.isUser)
                 {
-                    console.log("inside if statement")
-                    let path = '../../ProgramAdministratorApp';
-                    this.props.router.push(path);
-                    //ReactDOM.render(<ProgramAdministratorApp />, document.getElementById('root'));
+                    console.log("inside if statement");
                 }
                 else
                 {
                     console.log("inside else statement");
-
                 }
             });
     }
