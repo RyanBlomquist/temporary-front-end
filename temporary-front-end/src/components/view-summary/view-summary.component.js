@@ -52,7 +52,6 @@ export default class ViewSummary extends Component
         return programSummary.outcomes.map(function(currentOutcome, i){
             return <Outcome outcome={currentOutcome} key={i} />;
         });
-
     }
 
     handleEditModeClick()
