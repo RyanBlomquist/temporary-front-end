@@ -45,7 +45,7 @@ function generateGradeScale()
     return (
         Rubric.scale.map(function(currentScore, i)
         {
-            return <option key={i}>{currentScore}</option>
+            return <option key={i} value={currentScore}>{currentScore}</option>
         })
     );
 }
@@ -60,10 +60,10 @@ function displayCriteriaDescriptions(criteria)
     });
 }
 
-function displayCriteriaGrade()
+function displayCriteriaGrade(currentCriteria)
 {
         return (
-            <select className="form-control">
+            <select className="form-control" id={currentCriteria.description}>
                 <option disabled selected value> -- select an option -- </option>
                 {gradeScale}
             </select>
@@ -99,7 +99,7 @@ export default class RubricList extends Component
                 <tr>
                     <th scope="row" key={i}>{currentCriteria.description}</th>
                     {displayCriteriaDescriptions(currentCriteria)}
-                    {gradeMode ? displayCriteriaGrade(): ""}
+                    {gradeMode ? displayCriteriaGrade(currentCriteria): ""}
                 </tr>
             );
         });
@@ -113,12 +113,20 @@ export default class RubricList extends Component
         }
     }
 
+    handleSaveGradeClick()
+    {
+        Rubric.criteria.map(function(currentCriteria)
+        {
+            return document.getElementById(currentCriteria.description).value;
+        })
+    }
+
     render()
     {
         let saveGradeButton;
         if (this.state.gradeMode)
         {
-            saveGradeButton = <button type="button" className="btn btn-primary">Save Grade</button>
+            saveGradeButton = <button type="button" className="btn btn-primary" onClick={this.handleSaveGradeClick}>Save Grade</button>
         }
 
         return (
