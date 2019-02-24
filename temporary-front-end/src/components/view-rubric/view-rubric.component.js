@@ -40,6 +40,18 @@ var Rubric = {
     criteria: [criteriaOne, criteriaTwo, criteriaThree]
 }
 
+function generateGradeScale()
+{
+    return (
+        Rubric.scale.map(function(currentScore, i)
+        {
+            return <option key={i}>{currentScore}</option>
+        })
+    );
+}
+
+var gradeScale = generateGradeScale();
+
 function displayCriteriaDescriptions(criteria)
 {
     return criteria.scores.map(function(currentScore, i)
@@ -48,8 +60,27 @@ function displayCriteriaDescriptions(criteria)
     });
 }
 
+function displayCriteriaGrade()
+{
+        return (
+            <select className="form-control">
+                <option disabled selected value> -- select an option -- </option>
+                {gradeScale}
+            </select>
+        )
+}
+
 export default class RubricList extends Component 
 {
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            gradeMode: true
+        }
+    }
+
     displayScale()
     {
         return Rubric.scale.map(function(currentScore, i)
@@ -60,19 +91,36 @@ export default class RubricList extends Component
 
     displayCriteria()
     {
+        let gradeMode = this.state.gradeMode;
+
         return Rubric.criteria.map(function(currentCriteria, i)
         {
             return (
                 <tr>
                     <th scope="row" key={i}>{currentCriteria.description}</th>
                     {displayCriteriaDescriptions(currentCriteria)}
+                    {gradeMode ? displayCriteriaGrade(): ""}
                 </tr>
             );
         });
     }
 
+    displayGradeColumn()
+    {
+        if(this.state.gradeMode)
+        {
+            return <th scope="col">Score</th>
+        }
+    }
+
     render()
     {
+        let saveGradeButton;
+        if (this.state.gradeMode)
+        {
+            saveGradeButton = <button type="button" className="btn btn-primary">Save Grade</button>
+        }
+
         return (
             <div>
                 <h1>Rubric</h1>
@@ -83,12 +131,14 @@ export default class RubricList extends Component
                         <tr>
                             <th scope="col" className="outcome-width">Criteria</th>
                             {this.displayScale()}
+                            {this.displayGradeColumn()}
                         </tr>
                     </thead>
                     <tbody>
                         {this.displayCriteria()}
                     </tbody>
                 </table>
+                {saveGradeButton}
             </div>
         );
     }
