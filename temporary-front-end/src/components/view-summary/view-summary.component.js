@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './view-summary.css';
-import NavBar from "../nav-bar/nav-bar.component";
 //import axios from 'axios';
 
 //Dummy data
@@ -74,7 +73,6 @@ export default class ViewSummary extends Component
 
         return (
             <div className="container">
-                <NavBar />
                 <h1>{programSummary.title}</h1>
             
                 <table className="table table-bordered">
