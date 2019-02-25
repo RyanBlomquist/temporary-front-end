@@ -8,6 +8,8 @@ import ViewSummary from "./components/view-summary/view-summary.component.js";
 import RubricList from "./components/rubric-list/rubric-list.component.js";
 import ViewRubric from "./components/view-rubric/view-rubric.component.js";
 
+const trueRubric = <ViewRubric gradeMode={true} />;
+const falseRubric = <ViewRubric gradeMode={false} />;
 
 class App extends Component {
 
