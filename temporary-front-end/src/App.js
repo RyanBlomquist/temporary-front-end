@@ -49,6 +49,7 @@ class App extends Component {
           <Route path="/viewSummary" exact component={ViewSummary} />
           <Route path="/rubricList" exact component={RubricList} />
           <Route path="/viewRubric" exact component={ViewRubric} />
+          <Route path="/gradeRubric" exact component={ViewRubric} />
         </div>
       </Router>
     );

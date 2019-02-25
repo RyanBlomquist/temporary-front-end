@@ -56,7 +56,7 @@ function CriteriaGradeInput(props)
 {
     return (
         <select className="form-control" id={props.currentCriteria.description}>
-            <option disabled selected value> -- select an option -- </option>
+            <option defaultValue value> -- select an option -- </option>
             {gradeScale}
         </select>
     )
@@ -81,15 +81,15 @@ function TopRowGradeScale(props)
 function CriteriaRow(props)
 {
     return Rubric.criteria.map(function(currentCriteria, i)
-        {
-            return (
-                <tr>
-                    <th scope="row" key={i}>{currentCriteria.description}</th>
-                    <CriteriaDescription criteria={currentCriteria} />
-                    {props.gradeMode?  <CriteriaGradeInput currentCriteria={currentCriteria} /> : ""}
-                </tr>
+    {
+        return (
+            <tr key={i}>
+                <th scope="row">{currentCriteria.description}</th>
+                <CriteriaDescription criteria={currentCriteria} />
+                {props.gradeMode?  <span><CriteriaGradeInput currentCriteria={currentCriteria} /></span> : null}
+            </tr>
             );
-        });
+    });
 }
 
 export default class ViewRubric extends Component
@@ -106,11 +106,18 @@ export default class ViewRubric extends Component
 
     handleSaveGradeClick()
     {
-        Rubric.criteria.map(function(currentCriteria)
+        let scores = Rubric.criteria.map(function(currentCriteria)
         {
             console.log(document.getElementById(currentCriteria.description).value);
-            return document.getElementById(currentCriteria.description).value;
+            return {description: currentCriteria.description,
+                    value: document.getElementById(currentCriteria.description).value};
+
         })
+
+        let subject = "dummy_subjectID";
+
+        let subjectScore = {subjectID: subject,
+                            scores: scores};
     }
 
     render()
@@ -124,14 +131,14 @@ export default class ViewRubric extends Component
         return (
             <div>
                 <h1>Rubric</h1>
-                <h2>{Rubric.title}</h2>
+                <h2>{this.state.gradeMode ? "Grade" : null}{Rubric.title}</h2>
 
                 <table className="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" className="outcome-width">Criteria</th>
                             <TopRowGradeScale />
-                            {this.state.gradeMode ? <th scope="col">Score</th> : ''}
+                            {this.state.gradeMode ? <th scope="col" width="150px">Score</th> : null}
                         </tr>
                     </thead>
                     <tbody>

@@ -38,6 +38,13 @@ const Outcome = props => (
     </tr>
 )
 
+const ProgramSummaryBody = props =>
+{
+    return programSummary.outcomes.map(function(currentOutcome, i){
+        return <Outcome outcome={currentOutcome} key={i} />;
+    });
+}
+
 export default class ViewSummary extends Component 
 {
     
@@ -47,19 +54,10 @@ export default class ViewSummary extends Component
         this.state = {editMode: false};
     }
 
-    programSummaryDisplay()
-    {
-        return programSummary.outcomes.map(function(currentOutcome, i){
-            return <Outcome outcome={currentOutcome} key={i} />;
-        });
-    }
-
     handleEditModeClick()
     {
         this.setState({editMode: true});
     }
-
-    //<Link to="/editSummary" class="btn btn-primary">Edit Program Summary</Link>
 
     render()
     {
@@ -83,7 +81,7 @@ export default class ViewSummary extends Component
                         </tr>
                     </thead>
                     <tbody>
-                        {this.programSummaryDisplay()}
+                        <ProgramSummaryBody />
                     </tbody>
                 </table>
                 {addOutcomeButton}
